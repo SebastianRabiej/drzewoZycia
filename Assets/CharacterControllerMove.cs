@@ -13,9 +13,14 @@ public class CharacterControllerMove : MonoBehaviour {
 
 	void Update () {
 		rb.velocity = new Vector3(0,-5, 0);
-		if (Input.GetKey(KeyCode.Space))
+		if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Moved) {
+			transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
+
+		}
+		if (Input.GetMouseButtonDown(0))
 		{
 			transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
+
 		}
 	}
 }
