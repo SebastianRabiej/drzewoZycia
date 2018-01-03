@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Kolizja : MonoBehaviour {
+public class CollisionChecker : MonoBehaviour {
 
-    private void OnCollisionEnter2D(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.GetComponent<CharacterControllerMove>() != null)
         {

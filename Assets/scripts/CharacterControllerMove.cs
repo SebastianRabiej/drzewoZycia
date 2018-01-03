@@ -2,25 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class CharacterControllerMove : MonoBehaviour {
 
-	public float jumpSpeed = 8.0F;
-	public Rigidbody rb;
-	public float fallSpeed = -5;
+	public float tapForce = 10;
+
+	public float tiltSmooth = 5;
+
+	public Vector2 startPos;
+
+	Rigidbody2D rigidbody;
+
+	Quaternion downRotation;
+
+	Quaternion forwardRotation;
+
 	void Start () {
-		rb = GetComponent<Rigidbody>();
+		rigidbody = GetComponent<Rigidbody2D>();
+		downRotation = Quaternion.Euler (0, 0, -90);
+		forwardRotation = Quaternion.Euler (0, 0, 35);
 	}
 
 	void Update () {
-		rb.velocity = new Vector3(0,-5, 0);
-		if (Input.GetKey(KeyCode.Space))
-		{
-			transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
-		}
 		if (Input.GetMouseButtonDown(0))
 		{
-			transform.Translate(Vector3.up * jumpSpeed * Time.deltaTime);
+			rigidbody.velocity = new Vector3(0,0, 0);
+			transform.rotation = forwardRotation;
+			rigidbody.AddForce (Vector2.up * tapForce);
 
 		}
+		transform.rotation = Quaternion.Lerp (transform.rotation, downRotation, tiltSmooth * Time.deltaTime);
 	}
+
 }
