@@ -15,6 +15,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	void createObstacle(){
-		Instantiate(obstacle, new Vector3(5, Random.Range(-3F, 4.5F), 0), Quaternion.Euler(new Vector3(0, 0, 90)));
+		Instantiate(obstacle, new Vector3(5, Random.Range(-1.8F, 4.5F), -0.1F), Quaternion.Euler(new Vector3(0, 0, 90)));
 	}
 }
